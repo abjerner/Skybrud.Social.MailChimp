@@ -37,9 +37,9 @@ namespace Skybrud.Social.MailChimp.Endpoints {
         /// <summary>
         /// Gets a list of users of the account of the authenticated user.
         /// </summary>
-        /// <returns>Returns an instance of <code>MailGetUsersResponse</code> representing the response.</returns>
-        public MailGetUsersResponse GetUsers() {
-            return MailGetUsersResponse.ParseResponse(Raw.GetUsers());
+        /// <returns>Returns an instance of <code>MailChimpGetUsersResponse</code> representing the response.</returns>
+        public MailChimpGetUsersResponse GetUsers() {
+            return MailChimpGetUsersResponse.ParseResponse(Raw.GetUsers());
         }
 
         #endregion
