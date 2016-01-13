@@ -31,6 +31,9 @@ namespace Skybrud.Social.MailChimp.Endpoints.Raw {
         /// Gets a list of users of the account of the authenticated user.
         /// </summary>
         /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the raw response.</returns>
+        /// <see>
+        ///     <cref>https://apidocs.mailchimp.com/api/2.0/users/logins.php</cref>
+        /// </see>
         public SocialHttpResponse GetUsers() {
             return Client.DoHttpGetRequest("/2.0/users/logins");
         }
@@ -39,6 +42,9 @@ namespace Skybrud.Social.MailChimp.Endpoints.Raw {
         /// Gets information about the authenticated user.
         /// </summary>
         /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the raw response.</returns>
+        /// <see>
+        ///     <cref>https://apidocs.mailchimp.com/api/2.0/users/profile.php</cref>
+        /// </see>
         public SocialHttpResponse GetProfile() {
             return Client.DoHttpGetRequest("/2.0/users/profile");
         }
