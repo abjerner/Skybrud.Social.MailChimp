@@ -61,6 +61,7 @@
     <Compile Include="Responses\Authentication\MailChimpMetadataResponse.cs" />
     <Compile Include="Responses\Authentication\MailChimpTokenResponse.cs" />
     <Compile Include="Responses\MailChimpResponse.cs" />
+    <Compile Include="Responses\Users\MailChimpGetUserResponse.cs" />
     <Compile Include="Responses\Users\MailChimpGetUsersResponse.cs" />
   </ItemGroup>
   <ItemGroup>

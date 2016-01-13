@@ -42,6 +42,14 @@ namespace Skybrud.Social.MailChimp.Endpoints {
             return MailChimpGetUsersResponse.ParseResponse(Raw.GetUsers());
         }
 
+        /// <summary>
+        /// Gets information about the authenticated user.
+        /// </summary>
+        /// <returns>Returns an instance of <code>MailChimpGetUserResponse</code> representing the raw response.</returns>
+        public MailChimpGetUserResponse GetProfile() {
+            return MailChimpGetUserResponse.ParseResponse(Raw.GetProfile());
+        }
+
         #endregion
 
     }

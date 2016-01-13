@@ -35,6 +35,14 @@ namespace Skybrud.Social.MailChimp.Endpoints.Raw {
             return Client.DoHttpGetRequest("/2.0/users/logins");
         }
 
+        /// <summary>
+        /// Gets information about the authenticated user.
+        /// </summary>
+        /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the raw response.</returns>
+        public SocialHttpResponse GetProfile() {
+            return Client.DoHttpGetRequest("/2.0/users/profile");
+        }
+
         #endregion
 
     }
