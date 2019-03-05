@@ -36,6 +36,16 @@ namespace Skybrud.Social.Mailchimp {
         #region Static methods
 
         /// <summary>
+        /// Initializes a new instance from the specified OAuth <paramref name="client"/>.
+        /// </summary>
+        /// <param name="client">The OAuth client to be used for making requests to the Mailchimp API.</param>
+        /// <returns>A new instance of <see cref="MailchimpService"/>.</returns>
+        public static MailchimpService CreateFromClient(MailchimpOAuthClient client) {
+            if (client == null) throw new ArgumentNullException(nameof(client));
+            return new MailchimpService(client);
+        }
+
+        /// <summary>
         /// Initializes a new instance from the specified <code>apiKey</code>.
         /// </summary>
         /// <param name="apiKey">The API key.</param>
