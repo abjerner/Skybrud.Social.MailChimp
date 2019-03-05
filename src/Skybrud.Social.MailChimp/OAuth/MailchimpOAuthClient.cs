@@ -151,6 +151,10 @@ namespace Skybrud.Social.Mailchimp.OAuth {
                 request.QueryString.Add("apikey", ApiKey);
             }
 
+            if (String.IsNullOrWhiteSpace(AccessToken) == false) {
+                request.Headers.Authorization = $"Bearer {AccessToken}";
+            }
+
             // Append the API endpoint
             if (request.Url.StartsWith("/")) {
                 if (String.IsNullOrWhiteSpace(ApiEndpoint)) throw new PropertyNotSetException("ApiEndpoint");
