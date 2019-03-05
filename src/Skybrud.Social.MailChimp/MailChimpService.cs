@@ -1,34 +1,34 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using Skybrud.Social.MailChimp.Endpoints;
-using Skybrud.Social.MailChimp.OAuth;
+using Skybrud.Social.Mailchimp.Endpoints;
+using Skybrud.Social.Mailchimp.OAuth;
 
-namespace Skybrud.Social.MailChimp {
+namespace Skybrud.Social.Mailchimp {
 
     /// <summary>
-    /// Class working as an entry point to the MailChimp API.
+    /// Class working as an entry point to the Mailchimp API.
     /// </summary>
-    public class MailChimpService {
+    public class MailchimpService {
 
         #region Properties
 
         /// <summary>
-        /// Gets a reference to the internal OAuth client for communication with the MailChimp API.
+        /// Gets a reference to the internal OAuth client for communication with the Mailchimp API.
         /// </summary>
-        public MailChimpOAuthClient Client { get; private set; }
+        public MailchimpOAuthClient Client { get; private set; }
 
         /// <summary>
         /// Gets a reference to the users endpoint.
         /// </summary>
-        public MailChimpUsersEndpoint Users { get; private set; }
+        public MailchimpUsersEndpoint Users { get; private set; }
 
         #endregion
 
         #region Constructors
 
-        private MailChimpService(MailChimpOAuthClient client) {
+        private MailchimpService(MailchimpOAuthClient client) {
             Client = client;
-            Users = new MailChimpUsersEndpoint(this);
+            Users = new MailchimpUsersEndpoint(this);
         }
 
         #endregion
@@ -39,8 +39,8 @@ namespace Skybrud.Social.MailChimp {
         /// Initializes a new instance from the specified <code>apiKey</code>.
         /// </summary>
         /// <param name="apiKey">The API key.</param>
-        /// <returns>Returns an instance of <code>MailChimpService</code>.</returns>
-        public static MailChimpService GetFromApiKey(string apiKey) {
+        /// <returns>Returns an instance of <code>MailchimpService</code>.</returns>
+        public static MailchimpService GetFromApiKey(string apiKey) {
 
             // Do we have an API key?
             if (String.IsNullOrWhiteSpace(apiKey)) throw new ArgumentNullException("apiKey");
@@ -50,13 +50,13 @@ namespace Skybrud.Social.MailChimp {
             if (!match.Success) throw new ArgumentException("Specified API key doesn't appear to be valid.", "apiKey");
 
             // Initialize a new OAuth client
-            MailChimpOAuthClient client = new MailChimpOAuthClient {
+            MailchimpOAuthClient client = new MailchimpOAuthClient {
                 ApiKey = apiKey,
-                ApiEndpoint = "https://" + match.Groups[1].Value + ".api.mailchimp.com"
+                ApiEndpoint = "https://" + match.Groups[1].Value + ".api.Mailchimp.com"
             };
 
             // Return a new service instance
-            return new MailChimpService(client);
+            return new MailchimpService(client);
 
         }
 
@@ -65,17 +65,17 @@ namespace Skybrud.Social.MailChimp {
         /// </summary>
         /// <param name="accessToken"></param>
         /// <param name="apiEndpoint"></param>
-        /// <returns>Returns an instance of <code>MailChimpService</code>.</returns>
-        public static MailChimpService GetFromAccessToken(string accessToken, string apiEndpoint) {
+        /// <returns>Returns an instance of <code>MailchimpService</code>.</returns>
+        public static MailchimpService GetFromAccessToken(string accessToken, string apiEndpoint) {
             
             // Initialize a new OAuth client
-            MailChimpOAuthClient client = new MailChimpOAuthClient {
+            MailchimpOAuthClient client = new MailchimpOAuthClient {
                 AccessToken = accessToken,
-                ApiEndpoint = Regex.IsMatch(apiEndpoint, "^[a-z0-9]+$") ? "https://" + apiEndpoint + ".api.mailchimp.com" : apiEndpoint
+                ApiEndpoint = Regex.IsMatch(apiEndpoint, "^[a-z0-9]+$") ? "https://" + apiEndpoint + ".api.Mailchimp.com" : apiEndpoint
             };
 
             // Return a new service instance
-            return new MailChimpService(client);
+            return new MailchimpService(client);
 
         }
 

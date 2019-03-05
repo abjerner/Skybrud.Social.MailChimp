@@ -1,37 +1,37 @@
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
-namespace Skybrud.Social.MailChimp.Models.Authentication {
+namespace Skybrud.Social.Mailchimp.Models.Authentication {
 
     /// <summary>
-    /// Class representing information about a MailChimp user.
+    /// Class representing information about a Mailchimp user.
     /// </summary>
-    public class MailChimpMetadataLogin : MailChimpObject {
+    public class MailchimpMetadataLogin : MailchimpObject {
 
         #region Properties
 
         /// <summary>
-        /// Gets the email address of the MailChimp user.
+        /// Gets the email address of the Mailchimp user.
         /// </summary>
         public string Email { get; private set; }
 
         /// <summary>
-        /// Gets the avatar URL of the MailChimp user.
+        /// Gets the avatar URL of the Mailchimp user.
         /// </summary>
         public string Avatar { get; private set; }
 
         /// <summary>
-        /// Gets the ID of the MailChimp user.
+        /// Gets the ID of the Mailchimp user.
         /// </summary>
         public long LoginId { get; private set; }
 
         /// <summary>
-        /// Gets the login name of the MailChimp user.
+        /// Gets the login name of the Mailchimp user.
         /// </summary>
         public string LoginName { get; private set; }
 
         /// <summary>
-        /// Gets the login email address of the MailChimp user.
+        /// Gets the login email address of the Mailchimp user.
         /// </summary>
         public string LoginEmail { get; private set; }
 
@@ -39,7 +39,7 @@ namespace Skybrud.Social.MailChimp.Models.Authentication {
 
         #region Constructors
 
-        private MailChimpMetadataLogin(JObject obj) : base(obj) {
+        private MailchimpMetadataLogin(JObject obj) : base(obj) {
             Email = obj.GetString("email");
             Avatar = obj.GetString("avatar");
             LoginId = obj.GetInt64("login_id");
@@ -50,11 +50,11 @@ namespace Skybrud.Social.MailChimp.Models.Authentication {
         #endregion
 
         /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <code>MailChimpMetadataLogin</code>.
+        /// Parses the specified <code>obj</code> into an instance of <code>MailchimpMetadataLogin</code>.
         /// </summary>
         /// <param name="obj">The instance of <code>JObject</code> to be parsed.</param>
-        public static MailChimpMetadataLogin Parse(JObject obj) {
-            return obj == null ? null : new MailChimpMetadataLogin(obj);
+        public static MailchimpMetadataLogin Parse(JObject obj) {
+            return obj == null ? null : new MailchimpMetadataLogin(obj);
         }
 
     }

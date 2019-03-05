@@ -3,15 +3,15 @@ using Skybrud.Essentials.Common;
 using Skybrud.Essentials.Http;
 using Skybrud.Essentials.Http.Client;
 using Skybrud.Essentials.Http.Collections;
-using Skybrud.Social.MailChimp.Endpoints.Raw;
-using Skybrud.Social.MailChimp.Responses.Authentication;
+using Skybrud.Social.Mailchimp.Endpoints.Raw;
+using Skybrud.Social.Mailchimp.Responses.Authentication;
 
-namespace Skybrud.Social.MailChimp.OAuth {
+namespace Skybrud.Social.Mailchimp.OAuth {
 
     /// <summary>
-    /// Class for handling the raw communication with the MailChimp API as well as any OAuth 2.0 communication.
+    /// Class for handling the raw communication with the Mailchimp API as well as any OAuth 2.0 communication.
     /// </summary>
-    public class MailChimpOAuthClient : HttpClient {
+    public class MailchimpOAuthClient : HttpClient {
 
         #region Properties
 
@@ -48,7 +48,7 @@ namespace Skybrud.Social.MailChimp.OAuth {
         /// <summary>
         /// Gets a reference to the raw users endpoint.
         /// </summary>
-        public MailChimpUsersRawEndpoint Users { get; private set; }
+        public MailchimpUsersRawEndpoint Users { get; private set; }
 
         #endregion
 
@@ -57,8 +57,8 @@ namespace Skybrud.Social.MailChimp.OAuth {
         /// <summary>
         /// Initializes an OAuth client with empty information.
         /// </summary>
-        public MailChimpOAuthClient() {
-            Users = new MailChimpUsersRawEndpoint(this);
+        public MailchimpOAuthClient() {
+            Users = new MailchimpUsersRawEndpoint(this);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Skybrud.Social.MailChimp.OAuth {
         /// </summary>
         /// <param name="clientId">The ID of the client.</param>
         /// <param name="clientSecret">The secret of the client.</param>
-        public MailChimpOAuthClient(string clientId, string clientSecret) : this() {
+        public MailchimpOAuthClient(string clientId, string clientSecret) : this() {
             ClientId = clientId;
             ClientSecret = clientSecret;
         }
@@ -77,7 +77,7 @@ namespace Skybrud.Social.MailChimp.OAuth {
         /// <param name="clientId">The ID of the client.</param>
         /// <param name="clientSecret">The secret of the client.</param>
         /// <param name="redirectUri">The redirect URI of the client.</param>
-        public MailChimpOAuthClient(string clientId, string clientSecret, string redirectUri) : this() {
+        public MailchimpOAuthClient(string clientId, string clientSecret, string redirectUri) : this() {
             ClientId = clientId;
             ClientSecret = clientSecret;
             RedirectUri = redirectUri;
@@ -90,11 +90,11 @@ namespace Skybrud.Social.MailChimp.OAuth {
         /// <summary>
         /// Generates the authorization URL using the specified <code>state</code>.
         /// </summary>
-        /// <param name="state">The state to send to the MailChimp OAuth login page.</param>
+        /// <param name="state">The state to send to the Mailchimp OAuth login page.</param>
         /// <returns>Returns an authorization URL based on <code>state</code>.</returns>
         public string GetAuthorizationUrl(string state) {
             return String.Format(
-                "https://login.mailchimp.com/oauth2/authorize?response_type=code&client_id={0}&redirect_uri={1}&state={2}",
+                "https://login.Mailchimp.com/oauth2/authorize?response_type=code&client_id={0}&redirect_uri={1}&state={2}",
                 ClientId,
                 RedirectUri,
                 state
@@ -104,9 +104,9 @@ namespace Skybrud.Social.MailChimp.OAuth {
         /// <summary>
         /// Exchanges the specified authorization code for an access token.
         /// </summary>
-        /// <param name="authCode">The authorization code received from the MailChimp OAuth dialog.</param>
+        /// <param name="authCode">The authorization code received from the Mailchimp OAuth dialog.</param>
         /// <returns>Returns an access token based on the specified <code>authCode</code>.</returns>
-        public MailChimpTokenResponse GetAccessTokenFromAuthCode(string authCode) {
+        public MailchimpTokenResponse GetAccessTokenFromAuthCode(string authCode) {
 
             // Initialize the query string
             IHttpPostData query = new HttpPostData {
@@ -118,27 +118,27 @@ namespace Skybrud.Social.MailChimp.OAuth {
             };
 
             // Make the call to the API
-            IHttpResponse response = HttpUtils.Http.DoHttpPostRequest("https://login.mailchimp.com/oauth2/token", null, query);
+            IHttpResponse response = HttpUtils.Http.DoHttpPostRequest("https://login.Mailchimp.com/oauth2/token", null, query);
 
             // Parse the response
-            return MailChimpTokenResponse.ParseResponse(response);
+            return MailchimpTokenResponse.ParseResponse(response);
 
         }
 
         /// <summary>
-        /// Gets metadata about the authenticated MailChimp user.
+        /// Gets metadata about the authenticated Mailchimp user.
         /// </summary>
-        /// <returns>Returns an instance of <code>MailChimpMetadataResponse</code> representing the response.</returns>
-        public MailChimpMetadataResponse GetMetadata()  {
+        /// <returns>Returns an instance of <code>MailchimpMetadataResponse</code> representing the response.</returns>
+        public MailchimpMetadataResponse GetMetadata()  {
         
             // Some validation
             if (String.IsNullOrWhiteSpace(AccessToken)) throw new PropertyNotSetException("AccessToken");
 
             // Make the call to the API
-            IHttpResponse response = DoHttpGetRequest("https://login.mailchimp.com/oauth2/metadata");
+            IHttpResponse response = DoHttpGetRequest("https://login.Mailchimp.com/oauth2/metadata");
 
             // Parse the response
-            return MailChimpMetadataResponse.ParseResponse(response);
+            return MailchimpMetadataResponse.ParseResponse(response);
 
         }
 

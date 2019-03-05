@@ -2,12 +2,12 @@
 using System.Net;
 using Skybrud.Essentials.Http;
 
-namespace Skybrud.Social.MailChimp.Responses {
+namespace Skybrud.Social.Mailchimp.Responses {
 
     /// <summary>
-    /// Class representing a response from the MailChimp API.
+    /// Class representing a response from the Mailchimp API.
     /// </summary>
-    public class MailChimpResponse : HttpResponseBase {
+    public class MailchimpResponse : HttpResponseBase {
 
         #region Constructors
 
@@ -15,7 +15,7 @@ namespace Skybrud.Social.MailChimp.Responses {
         /// Initializes a new instance based on the specified <code>response</code>.
         /// </summary>
         /// <param name="response">The raw response.</param>
-        protected MailChimpResponse(IHttpResponse response) : base(response) { }
+        protected MailchimpResponse(IHttpResponse response) : base(response) { }
 
         #endregion
 
@@ -39,9 +39,9 @@ namespace Skybrud.Social.MailChimp.Responses {
     }
 
     /// <summary>
-    /// Class representing a response from the MailChimp API.
+    /// Class representing a response from the Mailchimp API.
     /// </summary>
-    public class MailChimpResponse<T> : MailChimpResponse {
+    public class MailchimpResponse<T> : MailchimpResponse {
 
         #region Properties
 
@@ -58,7 +58,7 @@ namespace Skybrud.Social.MailChimp.Responses {
         /// Initializes a new instance based on the specified <code>response</code>.
         /// </summary>
         /// <param name="response">The raw response.</param>
-        protected MailChimpResponse(IHttpResponse response) : base(response) { }
+        protected MailchimpResponse(IHttpResponse response) : base(response) { }
 
         #endregion
 

@@ -1,12 +1,12 @@
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
-namespace Skybrud.Social.MailChimp.Models.Authentication {
+namespace Skybrud.Social.Mailchimp.Models.Authentication {
 
     /// <summary>
-    /// Class representing the response body of a call to get metadata about the authenticated MailChimp user.
+    /// Class representing the response body of a call to get metadata about the authenticated Mailchimp user.
     /// </summary>
-    public class MailChimpMetadata : MailChimpObject {
+    public class MailchimpMetadata : MailchimpObject {
 
         #region Properties
 
@@ -33,7 +33,7 @@ namespace Skybrud.Social.MailChimp.Models.Authentication {
         /// <summary>
         /// Gets information about the authenticated user.
         /// </summary>
-        public MailChimpMetadataLogin Login { get; private set; }
+        public MailchimpMetadataLogin Login { get; private set; }
 
         /// <summary>
         /// Gets the login URL of the account.
@@ -49,12 +49,12 @@ namespace Skybrud.Social.MailChimp.Models.Authentication {
 
         #region Constructors
 
-        private MailChimpMetadata(JObject obj) : base(obj) {
+        private MailchimpMetadata(JObject obj) : base(obj) {
             DataCenter = obj.GetString("dc");
             AccountName = obj.GetString("accountname");
             Role = obj.GetString("role");
             UserId = obj.GetInt64("user_id");
-            Login = obj.GetObject("login", MailChimpMetadataLogin.Parse);
+            Login = obj.GetObject("login", MailchimpMetadataLogin.Parse);
             LoginUrl = obj.GetString("login_url");
             ApiEndpoint = obj.GetString("api_endpoint");
         }
@@ -62,11 +62,11 @@ namespace Skybrud.Social.MailChimp.Models.Authentication {
         #endregion
 
         /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <code>MailChimpMetadata</code>.
+        /// Parses the specified <code>obj</code> into an instance of <code>MailchimpMetadata</code>.
         /// </summary>
         /// <param name="obj">The instance of <code>JObject</code> to be parsed.</param>
-        public static MailChimpMetadata Parse(JObject obj) {
-            return obj == null ? null : new MailChimpMetadata(obj);
+        public static MailchimpMetadata Parse(JObject obj) {
+            return obj == null ? null : new MailchimpMetadata(obj);
         }
 
     }

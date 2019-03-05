@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Skybrud.Social.MailChimp.Models {
+namespace Skybrud.Social.Mailchimp.Models {
 
     /// <summary>
-    /// Class representing a basic object from the MailChimp API derived from an instance of <code>JObject</code>.
+    /// Class representing a basic object from the Mailchimp API derived from an instance of <code>JObject</code>.
     /// </summary>
-    public class MailChimpObject {
+    public class MailchimpObject {
 
         #region Properties
 
@@ -24,7 +24,7 @@ namespace Skybrud.Social.MailChimp.Models {
         /// Initializes a new instance from the specified <code>obj</code>.
         /// </summary>
         /// <param name="obj">The instance of <code>JObject</code> representing the object.</param>
-        protected MailChimpObject(JObject obj) {
+        protected MailchimpObject(JObject obj) {
             JObject = obj;
         }
 

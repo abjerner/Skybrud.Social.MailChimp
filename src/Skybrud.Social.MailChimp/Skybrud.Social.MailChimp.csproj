@@ -6,20 +6,20 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <RootNamespace>Skybrud.Social.MailChimp</RootNamespace>
+    <RootNamespace>Skybrud.Social.Mailchimp</RootNamespace>
     <Version>1.0.0-beta001</Version>
     <Company>Skybrud.dk a/s</Company>
     <Product>Skybrud.Social</Product>
     <Authors>Anders Bjerner</Authors>
     <Copyright>Copyright © 2019</Copyright>
-    <Description>Authentication and service implementation for the MailChimp API.</Description>
-    <RepositoryUrl>https://github.com/abjerner/Skybrud.Social.MailChimp</RepositoryUrl>
+    <Description>Authentication and service implementation for the Mailchimp API.</Description>
+    <RepositoryUrl>https://github.com/abjerner/Skybrud.Social.Mailchimp</RepositoryUrl>
   </PropertyGroup>
   
   <PropertyGroup>
-    <PackageTags>MailChimp, Skybrud, Social, OAuth, JSON</PackageTags>
-    <PackageLicenseUrl>https://github.com/abjerner/Skybrud.Social.MailChimp/blob/master/LICENSE.md</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/abjerner/Skybrud.Social.MailChimp</PackageProjectUrl>
+    <PackageTags>Mailchimp, Skybrud, Social, OAuth, JSON</PackageTags>
+    <PackageLicenseUrl>https://github.com/abjerner/Skybrud.Social.Mailchimp/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/abjerner/Skybrud.Social.Mailchimp</PackageProjectUrl>
     <PackageIconUrl>http://www.skybrud.dk/img/5431sk/icon/favicon.ico</PackageIconUrl>
   </PropertyGroup>
 
@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <PropertyGroup>
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Skybrud.Social.MailChimp.xml</DocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Skybrud.Social.Mailchimp.xml</DocumentationFile>
   </PropertyGroup>
 
   <Target Name="PostBuild" BeforeTargets="PostBuildEvent" Condition="'$(TargetFramework)|$(RunBuildTargets)'=='net46|true'">

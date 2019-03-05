@@ -1,22 +1,22 @@
 ﻿using Skybrud.Essentials.Http;
-using Skybrud.Social.MailChimp.Models.Authentication;
+using Skybrud.Social.Mailchimp.Models.Authentication;
 
-namespace Skybrud.Social.MailChimp.Responses.Authentication {
+namespace Skybrud.Social.Mailchimp.Responses.Authentication {
 
     /// <summary>
-    /// Class representing the OAuth 2.0 token response from the MailChimp API.
+    /// Class representing the OAuth 2.0 token response from the Mailchimp API.
     /// </summary>
-    public class MailChimpTokenResponse : MailChimpResponse<MailChimpTokenInfo> {
+    public class MailchimpTokenResponse : MailchimpResponse<MailchimpTokenInfo> {
 
         #region Constructors
 
-        private MailChimpTokenResponse(IHttpResponse response) : base(response) {
+        private MailchimpTokenResponse(IHttpResponse response) : base(response) {
 
             // Validate the response
             ValidateResponse(response);
 
             // Parse the response body
-            Body = ParseJsonObject(response.Body, MailChimpTokenInfo.Parse);
+            Body = ParseJsonObject(response.Body, MailchimpTokenInfo.Parse);
 
         }
 
@@ -25,12 +25,12 @@ namespace Skybrud.Social.MailChimp.Responses.Authentication {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <code>MailChimpTokenResponse</code>.
+        /// Parses the specified <code>response</code> into an instance of <code>MailchimpTokenResponse</code>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <code>MailChimpTokenResponse</code>.</returns>
-        public static MailChimpTokenResponse ParseResponse(IHttpResponse response) {
-            return response == null ? null : new MailChimpTokenResponse(response);
+        /// <returns>Returns an instance of <code>MailchimpTokenResponse</code>.</returns>
+        public static MailchimpTokenResponse ParseResponse(IHttpResponse response) {
+            return response == null ? null : new MailchimpTokenResponse(response);
         }
 
         #endregion

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skybrud.Social.MailChimp", "Skybrud.Social.MailChimp\Skybrud.Social.MailChimp.csproj", "{A38C6874-CD89-4D36-80E7-3A8576679061}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skybrud.Social.Mailchimp", "Skybrud.Social.Mailchimp\Skybrud.Social.Mailchimp.csproj", "{A38C6874-CD89-4D36-80E7-3A8576679061}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,25 +1,25 @@
 ﻿using Skybrud.Essentials.Http;
-using Skybrud.Social.MailChimp.OAuth;
+using Skybrud.Social.Mailchimp.OAuth;
 
-namespace Skybrud.Social.MailChimp.Endpoints.Raw {
+namespace Skybrud.Social.Mailchimp.Endpoints.Raw {
 
     /// <summary>
     /// Class representing the raw users endpoint.
     /// </summary>
-    public class MailChimpUsersRawEndpoint {
+    public class MailchimpUsersRawEndpoint {
 
         #region Properties
 
         /// <summary>
         /// Gets a reference to the OAuth client.
         /// </summary>
-        public MailChimpOAuthClient Client { get; private set; }
+        public MailchimpOAuthClient Client { get; private set; }
 
         #endregion
 
         #region Constructors
 
-        internal MailChimpUsersRawEndpoint(MailChimpOAuthClient client) {
+        internal MailchimpUsersRawEndpoint(MailchimpOAuthClient client) {
             Client = client;
         }
 
@@ -32,7 +32,7 @@ namespace Skybrud.Social.MailChimp.Endpoints.Raw {
         /// </summary>
         /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the raw response.</returns>
         /// <see>
-        ///     <cref>https://apidocs.mailchimp.com/api/2.0/users/logins.php</cref>
+        ///     <cref>https://apidocs.Mailchimp.com/api/2.0/users/logins.php</cref>
         /// </see>
         public IHttpResponse GetUsers() {
             return Client.DoHttpGetRequest("/2.0/users/logins");
@@ -43,7 +43,7 @@ namespace Skybrud.Social.MailChimp.Endpoints.Raw {
         /// </summary>
         /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the raw response.</returns>
         /// <see>
-        ///     <cref>https://apidocs.mailchimp.com/api/2.0/users/profile.php</cref>
+        ///     <cref>https://apidocs.Mailchimp.com/api/2.0/users/profile.php</cref>
         /// </see>
         public IHttpResponse GetProfile() {
             return Client.DoHttpGetRequest("/2.0/users/profile");

@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
-namespace Skybrud.Social.MailChimp.Models.Users {
+namespace Skybrud.Social.Mailchimp.Models.Users {
 
     /// <summary>
-    /// Class representing a user of a MailChimp account.
+    /// Class representing a user of a Mailchimp account.
     /// </summary>
-    public class MailChimpUser : MailChimpObject {
+    public class MailchimpUser : MailchimpObject {
 
         #region Properties
         
@@ -16,7 +16,7 @@ namespace Skybrud.Social.MailChimp.Models.Users {
         public long Id { get; private set; }
 
         /// <summary>
-        /// Gets the username of the MailChimp user.
+        /// Gets the username of the Mailchimp user.
         /// </summary>
         public string Username { get; private set; }
 
@@ -41,7 +41,7 @@ namespace Skybrud.Social.MailChimp.Models.Users {
         public string Avatar { get; private set; }
 
         /// <summary>
-        /// Gets the ID of the global MailChimp user.
+        /// Gets the ID of the global Mailchimp user.
         /// </summary>
         public long GlobalUserId { get; private set; }
 
@@ -54,7 +54,7 @@ namespace Skybrud.Social.MailChimp.Models.Users {
 
         #region Constructors
 
-        private MailChimpUser(JObject obj) : base(obj) {
+        private MailchimpUser(JObject obj) : base(obj) {
             Id = obj.GetInt64("id");
             Username = obj.GetString("username");
             Name = obj.GetString("name");
@@ -70,11 +70,11 @@ namespace Skybrud.Social.MailChimp.Models.Users {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <code>MailChimpUser</code>.
+        /// Parses the specified <code>obj</code> into an instance of <code>MailchimpUser</code>.
         /// </summary>
         /// <param name="obj">The instance of <code>JObject</code> to be parsed.</param>
-        public static MailChimpUser Parse(JObject obj) {
-            return obj == null ? null : new MailChimpUser(obj);
+        public static MailchimpUser Parse(JObject obj) {
+            return obj == null ? null : new MailchimpUser(obj);
         }
 
         #endregion

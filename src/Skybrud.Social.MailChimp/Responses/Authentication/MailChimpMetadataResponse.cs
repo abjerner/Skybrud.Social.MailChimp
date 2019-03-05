@@ -1,22 +1,22 @@
 ﻿using Skybrud.Essentials.Http;
-using Skybrud.Social.MailChimp.Models.Authentication;
+using Skybrud.Social.Mailchimp.Models.Authentication;
 
-namespace Skybrud.Social.MailChimp.Responses.Authentication {
+namespace Skybrud.Social.Mailchimp.Responses.Authentication {
 
     /// <summary>
-    /// Class representing the response of a call to get metadata about the authenticated MailChimp user.
+    /// Class representing the response of a call to get metadata about the authenticated Mailchimp user.
     /// </summary>
-    public class MailChimpMetadataResponse : MailChimpResponse<MailChimpMetadata> {
+    public class MailchimpMetadataResponse : MailchimpResponse<MailchimpMetadata> {
 
         #region Constructors
 
-        private MailChimpMetadataResponse(IHttpResponse response) : base(response) {
+        private MailchimpMetadataResponse(IHttpResponse response) : base(response) {
 
             // Validate the response
             ValidateResponse(response);
 
             // Parse the response body
-            Body = ParseJsonObject(response.Body, MailChimpMetadata.Parse);
+            Body = ParseJsonObject(response.Body, MailchimpMetadata.Parse);
 
         }
 
@@ -25,12 +25,12 @@ namespace Skybrud.Social.MailChimp.Responses.Authentication {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <code>MailChimpMetadataResponse</code>.
+        /// Parses the specified <code>response</code> into an instance of <code>MailchimpMetadataResponse</code>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <code>MailChimpMetadataResponse</code>.</returns>
-        public static MailChimpMetadataResponse ParseResponse(IHttpResponse response) {
-            return response == null ? null : new MailChimpMetadataResponse(response);
+        /// <returns>Returns an instance of <code>MailchimpMetadataResponse</code>.</returns>
+        public static MailchimpMetadataResponse ParseResponse(IHttpResponse response) {
+            return response == null ? null : new MailchimpMetadataResponse(response);
         }
 
         #endregion

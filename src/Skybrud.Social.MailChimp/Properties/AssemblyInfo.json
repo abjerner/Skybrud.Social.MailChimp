@@ -1,6 +1,6 @@
 {
-  "title": "Skybrud.Social.MailChimp",
-  "description": "Authentication and service implementation for the MailChimp API.",
+  "title": "Skybrud.Social.Mailchimp",
+  "description": "Authentication and service implementation for the Mailchimp API.",
   "company": "Skybrud.dk a/s",
   "product": "Skybrud.Social",
   "copyright": "Copyright © 2019",

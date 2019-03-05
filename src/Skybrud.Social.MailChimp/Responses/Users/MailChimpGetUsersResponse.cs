@@ -1,22 +1,22 @@
 ﻿using Skybrud.Essentials.Http;
-using Skybrud.Social.MailChimp.Models.Users;
+using Skybrud.Social.Mailchimp.Models.Users;
 
-namespace Skybrud.Social.MailChimp.Responses.Users {
+namespace Skybrud.Social.Mailchimp.Responses.Users {
 
     /// <summary>
     /// Class representing a call to get a list of users of an account.
     /// </summary>
-    public class MailChimpGetUsersResponse : MailChimpResponse<MailChimpUser[]> {
+    public class MailchimpGetUsersResponse : MailchimpResponse<MailchimpUser[]> {
 
         #region Constructors
 
-        private MailChimpGetUsersResponse(IHttpResponse response) : base(response) {
+        private MailchimpGetUsersResponse(IHttpResponse response) : base(response) {
 
             // Validate the response
             ValidateResponse(response);
 
             // Parse the response body
-            Body = ParseJsonArray(response.Body, MailChimpUser.Parse);
+            Body = ParseJsonArray(response.Body, MailchimpUser.Parse);
 
         }
 
@@ -25,12 +25,12 @@ namespace Skybrud.Social.MailChimp.Responses.Users {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <code>MailChimpGetUsersResponse</code>.
+        /// Parses the specified <code>response</code> into an instance of <code>MailchimpGetUsersResponse</code>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <code>MailChimpGetUsersResponse</code>.</returns>
-        public static MailChimpGetUsersResponse ParseResponse(IHttpResponse response) {
-            return response == null ? null : new MailChimpGetUsersResponse(response);
+        /// <returns>Returns an instance of <code>MailchimpGetUsersResponse</code>.</returns>
+        public static MailchimpGetUsersResponse ParseResponse(IHttpResponse response) {
+            return response == null ? null : new MailchimpGetUsersResponse(response);
         }
 
         #endregion
