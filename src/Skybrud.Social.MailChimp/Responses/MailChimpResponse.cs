@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Net;
-using Skybrud.Social.Http;
+using Skybrud.Essentials.Http;
 
 namespace Skybrud.Social.MailChimp.Responses {
 
     /// <summary>
     /// Class representing a response from the MailChimp API.
     /// </summary>
-    public class MailChimpResponse : SocialResponse {
+    public class MailChimpResponse : HttpResponseBase {
 
         #region Constructors
 
@@ -15,7 +15,7 @@ namespace Skybrud.Social.MailChimp.Responses {
         /// Initializes a new instance based on the specified <code>response</code>.
         /// </summary>
         /// <param name="response">The raw response.</param>
-        protected MailChimpResponse(SocialHttpResponse response) : base(response) { }
+        protected MailChimpResponse(IHttpResponse response) : base(response) { }
 
         #endregion
 
@@ -25,7 +25,7 @@ namespace Skybrud.Social.MailChimp.Responses {
         /// Validates the specified <code>response</code>.
         /// </summary>
         /// <param name="response">The response to be validated.</param>
-        public static void ValidateResponse(SocialHttpResponse response) {
+        public static void ValidateResponse(IHttpResponse response) {
 
             // Skip error checking if the server responds with an OK status code
             if (response.StatusCode == HttpStatusCode.OK) return;
@@ -58,7 +58,7 @@ namespace Skybrud.Social.MailChimp.Responses {
         /// Initializes a new instance based on the specified <code>response</code>.
         /// </summary>
         /// <param name="response">The raw response.</param>
-        protected MailChimpResponse(SocialHttpResponse response) : base(response) { }
+        protected MailChimpResponse(IHttpResponse response) : base(response) { }
 
         #endregion
 

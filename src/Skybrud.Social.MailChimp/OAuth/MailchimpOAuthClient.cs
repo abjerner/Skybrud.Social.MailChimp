@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Specialized;
-using System.Net;
-using Skybrud.Social.Exceptions;
-using Skybrud.Social.Http;
-using Skybrud.Social.Interfaces;
+using Skybrud.Essentials.Common;
+using Skybrud.Essentials.Http;
+using Skybrud.Essentials.Http.Client;
+using Skybrud.Essentials.Http.Collections;
 using Skybrud.Social.MailChimp.Endpoints.Raw;
 using Skybrud.Social.MailChimp.Responses.Authentication;
 
@@ -12,7 +11,7 @@ namespace Skybrud.Social.MailChimp.OAuth {
     /// <summary>
     /// Class for handling the raw communication with the MailChimp API as well as any OAuth 2.0 communication.
     /// </summary>
-    public class MailChimpOAuthClient {
+    public class MailChimpOAuthClient : HttpClient {
 
         #region Properties
 
@@ -110,7 +109,7 @@ namespace Skybrud.Social.MailChimp.OAuth {
         public MailChimpTokenResponse GetAccessTokenFromAuthCode(string authCode) {
 
             // Initialize the query string
-            NameValueCollection query = new NameValueCollection {
+            IHttpPostData query = new HttpPostData {
                 {"grant_type", "authorization_code"},
                 {"client_id", ClientId},
                 {"client_secret", ClientSecret},
@@ -119,13 +118,10 @@ namespace Skybrud.Social.MailChimp.OAuth {
             };
 
             // Make the call to the API
-            HttpWebResponse response = SocialUtils.DoHttpPostRequest("https://login.mailchimp.com/oauth2/token", null, query);
-
-            // Wrap the native response class
-            SocialHttpResponse social = SocialHttpResponse.GetFromWebResponse(response);
+            IHttpResponse response = HttpUtils.Http.DoHttpPostRequest("https://login.mailchimp.com/oauth2/token", null, query);
 
             // Parse the response
-            return MailChimpTokenResponse.ParseResponse(social);
+            return MailChimpTokenResponse.ParseResponse(response);
 
         }
 
@@ -139,139 +135,27 @@ namespace Skybrud.Social.MailChimp.OAuth {
             if (String.IsNullOrWhiteSpace(AccessToken)) throw new PropertyNotSetException("AccessToken");
 
             // Make the call to the API
-            SocialHttpResponse response = DoHttpGetRequest("https://login.mailchimp.com/oauth2/metadata");
+            IHttpResponse response = DoHttpGetRequest("https://login.mailchimp.com/oauth2/metadata");
 
             // Parse the response
             return MailChimpMetadataResponse.ParseResponse(response);
 
         }
 
-        /// <summary>
-        /// Makes a GET request to the MailChimp API. If the <code>AccessToken</code> property has been specified, the
-        /// access token will added as an authorization header of the request.
-        /// </summary>
-        /// <param name="url">The URL to call.</param>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> wrapping the response from the MailChimp API.</returns>
-        public SocialHttpResponse DoHttpGetRequest(string url) {
-            return DoHttpGetRequest(url, (SocialQueryString)null);
-        }
+        protected override void PrepareHttpRequest(IHttpRequest request) {
 
-        /// <summary>
-        /// Makes a GET request to the MailChimp API. If the <code>AccessToken</code> property has been specified, the
-        /// access token will added as an authorization header of the request.
-        /// </summary>
-        /// <param name="url">The URL to call.</param>
-        /// <param name="query">The query string of the request.</param>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> wrapping the response from the MailChimp API.</returns>
-        public SocialHttpResponse DoHttpGetRequest(string url, NameValueCollection query) {
-            return DoHttpGetRequest(url, new SocialQueryString(query));
-        }
+            // Initialize a new instance of HttpQueryString if the one specified is NULL
+            if (request.QueryString == null) request.QueryString = new HttpQueryString();
 
-        /// <summary>
-        /// Makes a GET request to the MailChimp API. If the <code>AccessToken</code> property has been specified, the
-        /// access token will added as an authorization header of the request.
-        /// </summary>
-        /// <param name="url">The URL to call.</param>
-        /// <param name="options">The options of the request.</param>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> wrapping the response from the MailChimp API.</returns>
-        public SocialHttpResponse DoHttpGetRequest(string url, IGetOptions options) {
-            return DoHttpGetRequest(url, options == null ? null : options.GetQueryString());
-        }
-
-        /// <summary>
-        /// Makes a GET request to the MailChimp API. If the <code>AccessToken</code> property has been specified, the
-        /// access token will added as an authorization header of the request.
-        /// </summary>
-        /// <param name="url">The URL to call.</param>
-        /// <param name="query">The query string of the request.</param>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> wrapping the response from the MailChimp API.</returns>
-        public SocialHttpResponse DoHttpGetRequest(string url, SocialQueryString query) {
-
-            // Throw an exception if the URL is empty
-            if (String.IsNullOrWhiteSpace(url)) throw new ArgumentNullException("url");
-
-            // Initialize a new instance of SocialQueryString if the one specified is NULL
-            if (query == null) query = new SocialQueryString();
-
-            if (!String.IsNullOrWhiteSpace(ApiKey) && !query.ContainsKey("apikey")) {
-                query.Add("apikey", ApiKey);
+            if (String.IsNullOrWhiteSpace(ApiKey) == false && request.QueryString.ContainsKey("apikey") == false) {
+                request.QueryString.Add("apikey", ApiKey);
             }
-
-            // Append the query string to the URL
-            if (!query.IsEmpty) url += (url.Contains("?") ? "&" : "?") + query;
 
             // Append the API endpoint
-            if (url.StartsWith("/")) {
+            if (request.Url.StartsWith("/")) {
                 if (String.IsNullOrWhiteSpace(ApiEndpoint)) throw new PropertyNotSetException("ApiEndpoint");
-                url = ApiEndpoint + url;
+                request.Url = ApiEndpoint + request.Url;
             }
-
-            // Initialize a new HTTP request
-            SocialHttpRequest request = new SocialHttpRequest {
-                Url = url
-            };
-
-            // Add the authorization header if the "AccessToken" property is specified
-            if (!String.IsNullOrWhiteSpace(AccessToken) && !query.ContainsKey("apikey")) {
-                request.Authorization = "OAuth " + AccessToken;
-            }
-
-            // Get the HTTP response
-            return request.GetResponse();
-
-        }
-
-        /// <summary>
-        /// Makes a POST request to the MailChimp API. If the <code>AccessToken</code> property has been specified, the
-        /// access token will added as an authorization header of the request.
-        /// </summary>
-        /// <param name="url">The URL to call.</param>
-        /// <param name="options">The options of the request.</param>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> wrapping the response from the MailChimp API.</returns>
-        public SocialHttpResponse DoHttpPostRequest(string url, IPostOptions options) {
-            if (options == null) throw new ArgumentNullException("options");
-            return DoHttpPostRequest(url, options.GetQueryString(), options.GetPostData(), options.IsMultipart);
-        }
-
-        /// <summary>
-        /// Makes a POST request to the MailChimp API. If the <code>AccessToken</code> property has been specified, the
-        /// access token will added as an authorization header of the request.
-        /// </summary>
-        /// <param name="url">The URL to call.</param>
-        /// <param name="query">The query string of the request.</param>
-        /// <param name="postData">The POST data.</param>
-        /// <param name="isMultipart">If <code>true</code>, the content type of the request will be <code>multipart/form-data</code>, otherwise <code>application/x-www-form-urlencoded</code>.</param>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> wrapping the response from the MailChimp API.</returns>
-        public SocialHttpResponse DoHttpPostRequest(string url, SocialQueryString query, SocialPostData postData, bool isMultipart) {
-
-            // Throw an exception if the URL is empty
-            if (String.IsNullOrWhiteSpace(url)) throw new ArgumentNullException("url");
-
-            // Initialize a new instance of SocialQueryString if the one specified is NULL
-            if (query == null) query = new SocialQueryString();
-
-            // Append the access token to the query string if present in the client and not already
-            // specified in the query string
-            if (!query.ContainsKey("access_token") && !String.IsNullOrWhiteSpace(AccessToken)) {
-                query.Add("access_token", AccessToken);
-            }
-
-            // Append the query string to the URL
-            if (!query.IsEmpty) url += (url.Contains("?") ? "&" : "?") + query;
-
-            // Initialize a new HTTP request
-            SocialHttpRequest request = new SocialHttpRequest {
-                Url = url,
-                Method = "POST"
-            };
-
-            // Add the authorization header if the "AccessToken" property is specified
-            if (!String.IsNullOrWhiteSpace(AccessToken)) {
-                request.Authorization = "OAuth " + AccessToken;
-            }
-
-            // Get the HTTP response
-            return request.GetResponse();
 
         }
 

@@ -1,4 +1,4 @@
-﻿using Skybrud.Social.Http;
+﻿using Skybrud.Essentials.Http;
 using Skybrud.Social.MailChimp.OAuth;
 
 namespace Skybrud.Social.MailChimp.Endpoints.Raw {
@@ -34,7 +34,7 @@ namespace Skybrud.Social.MailChimp.Endpoints.Raw {
         /// <see>
         ///     <cref>https://apidocs.mailchimp.com/api/2.0/users/logins.php</cref>
         /// </see>
-        public SocialHttpResponse GetUsers() {
+        public IHttpResponse GetUsers() {
             return Client.DoHttpGetRequest("/2.0/users/logins");
         }
 
@@ -45,7 +45,7 @@ namespace Skybrud.Social.MailChimp.Endpoints.Raw {
         /// <see>
         ///     <cref>https://apidocs.mailchimp.com/api/2.0/users/profile.php</cref>
         /// </see>
-        public SocialHttpResponse GetProfile() {
+        public IHttpResponse GetProfile() {
             return Client.DoHttpGetRequest("/2.0/users/profile");
         }
 

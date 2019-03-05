@@ -1,4 +1,4 @@
-﻿using Skybrud.Social.Http;
+﻿using Skybrud.Essentials.Http;
 using Skybrud.Social.MailChimp.Objects.Authentication;
 
 namespace Skybrud.Social.MailChimp.Responses.Authentication {
@@ -10,7 +10,7 @@ namespace Skybrud.Social.MailChimp.Responses.Authentication {
 
         #region Constructors
 
-        private MailChimpMetadataResponse(SocialHttpResponse response) : base(response) {
+        private MailChimpMetadataResponse(IHttpResponse response) : base(response) {
 
             // Validate the response
             ValidateResponse(response);
@@ -29,7 +29,7 @@ namespace Skybrud.Social.MailChimp.Responses.Authentication {
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
         /// <returns>Returns an instance of <code>MailChimpMetadataResponse</code>.</returns>
-        public static MailChimpMetadataResponse ParseResponse(SocialHttpResponse response) {
+        public static MailChimpMetadataResponse ParseResponse(IHttpResponse response) {
             return response == null ? null : new MailChimpMetadataResponse(response);
         }
 
