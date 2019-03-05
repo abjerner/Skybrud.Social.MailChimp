@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Skybrud.Social.MailChimp.Objects {
+namespace Skybrud.Social.MailChimp.Models {
 
     /// <summary>
     /// Class representing a basic object from the MailChimp API derived from an instance of <code>JObject</code>.

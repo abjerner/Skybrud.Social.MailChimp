@@ -1,5 +1,5 @@
 ﻿using Skybrud.Essentials.Http;
-using Skybrud.Social.MailChimp.Objects.Authentication;
+using Skybrud.Social.MailChimp.Models.Authentication;
 
 namespace Skybrud.Social.MailChimp.Responses.Authentication {
 

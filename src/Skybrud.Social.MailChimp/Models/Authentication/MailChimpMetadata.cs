@@ -1,7 +1,7 @@
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
-namespace Skybrud.Social.MailChimp.Objects.Authentication {
+namespace Skybrud.Social.MailChimp.Models.Authentication {
 
     /// <summary>
     /// Class representing the response body of a call to get metadata about the authenticated MailChimp user.

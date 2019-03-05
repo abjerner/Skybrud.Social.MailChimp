@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
-namespace Skybrud.Social.MailChimp.Objects.Users {
+namespace Skybrud.Social.MailChimp.Models.Users {
 
     /// <summary>
     /// Class representing a user of a MailChimp account.

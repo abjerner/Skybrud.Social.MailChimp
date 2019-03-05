@@ -1,5 +1,5 @@
 ﻿using Skybrud.Essentials.Http;
-using Skybrud.Social.MailChimp.Objects.Users;
+using Skybrud.Social.MailChimp.Models.Users;
 
 namespace Skybrud.Social.MailChimp.Responses.Users {
 
