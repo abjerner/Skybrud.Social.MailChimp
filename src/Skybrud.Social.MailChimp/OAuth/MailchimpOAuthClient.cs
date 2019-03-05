@@ -94,7 +94,7 @@ namespace Skybrud.Social.Mailchimp.OAuth {
         /// <returns>Returns an authorization URL based on <code>state</code>.</returns>
         public string GetAuthorizationUrl(string state) {
             return String.Format(
-                "https://login.Mailchimp.com/oauth2/authorize?response_type=code&client_id={0}&redirect_uri={1}&state={2}",
+                "https://login.mailchimp.com/oauth2/authorize?response_type=code&client_id={0}&redirect_uri={1}&state={2}",
                 ClientId,
                 RedirectUri,
                 state
@@ -118,7 +118,7 @@ namespace Skybrud.Social.Mailchimp.OAuth {
             };
 
             // Make the call to the API
-            IHttpResponse response = HttpUtils.Http.DoHttpPostRequest("https://login.Mailchimp.com/oauth2/token", null, query);
+            IHttpResponse response = HttpUtils.Http.DoHttpPostRequest("https://login.mailchimp.com/oauth2/token", null, query);
 
             // Parse the response
             return MailchimpTokenResponse.ParseResponse(response);
@@ -135,7 +135,7 @@ namespace Skybrud.Social.Mailchimp.OAuth {
             if (String.IsNullOrWhiteSpace(AccessToken)) throw new PropertyNotSetException("AccessToken");
 
             // Make the call to the API
-            IHttpResponse response = DoHttpGetRequest("https://login.Mailchimp.com/oauth2/metadata");
+            IHttpResponse response = DoHttpGetRequest("https://login.mailchimp.com/oauth2/metadata");
 
             // Parse the response
             return MailchimpMetadataResponse.ParseResponse(response);

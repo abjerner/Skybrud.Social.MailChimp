@@ -71,7 +71,7 @@ namespace Skybrud.Social.Mailchimp {
             // Initialize a new OAuth client
             MailchimpOAuthClient client = new MailchimpOAuthClient {
                 AccessToken = accessToken,
-                ApiEndpoint = Regex.IsMatch(apiEndpoint, "^[a-z0-9]+$") ? "https://" + apiEndpoint + ".api.Mailchimp.com" : apiEndpoint
+                ApiEndpoint = Regex.IsMatch(apiEndpoint, "^[a-z0-9]+$") ? "https://" + apiEndpoint + ".api.mailchimp.com" : apiEndpoint
             };
 
             // Return a new service instance
