@@ -46,6 +46,11 @@ namespace Skybrud.Social.Mailchimp.OAuth {
         public string ApiEndpoint { get; set; }
 
         /// <summary>
+        /// Gets a reference to the raw lists endpoint.
+        /// </summary>
+        public MailchimpListsRawEndpoint Lists { get; }
+
+        /// <summary>
         /// Gets a reference to the raw users endpoint.
         /// </summary>
         public MailchimpUsersRawEndpoint Users { get; private set; }
@@ -58,6 +63,7 @@ namespace Skybrud.Social.Mailchimp.OAuth {
         /// Initializes an OAuth client with empty information.
         /// </summary>
         public MailchimpOAuthClient() {
+            Lists = new MailchimpListsRawEndpoint(this);
             Users = new MailchimpUsersRawEndpoint(this);
         }
 

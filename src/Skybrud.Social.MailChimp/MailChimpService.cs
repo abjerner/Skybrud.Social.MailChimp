@@ -18,6 +18,11 @@ namespace Skybrud.Social.Mailchimp {
         public MailchimpOAuthClient Client { get; private set; }
 
         /// <summary>
+        /// Gets a reference to the lists endpoint.
+        /// </summary>
+        public MailchimpListsEndpoint Lists { get; }
+
+        /// <summary>
         /// Gets a reference to the users endpoint.
         /// </summary>
         public MailchimpUsersEndpoint Users { get; private set; }
@@ -28,6 +33,7 @@ namespace Skybrud.Social.Mailchimp {
 
         private MailchimpService(MailchimpOAuthClient client) {
             Client = client;
+            Lists = new MailchimpListsEndpoint(this);
             Users = new MailchimpUsersEndpoint(this);
         }
 
