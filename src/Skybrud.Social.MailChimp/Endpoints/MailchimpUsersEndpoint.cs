@@ -13,14 +13,12 @@ namespace Skybrud.Social.Mailchimp.Endpoints {
         /// <summary>
         /// Gets a reference to the Mailchimp service.
         /// </summary>
-        public MailchimpService Service { get; private set; }
+        public MailchimpService Service { get; }
 
         /// <summary>
         /// Gets a reference to the raw endpoint.
         /// </summary>
-        public MailchimpUsersRawEndpoint Raw {
-            get { return Service.Client.Users; }
-        }
+        public MailchimpUsersRawEndpoint Raw => Service.Client.Users;
 
         #endregion
 
@@ -37,7 +35,7 @@ namespace Skybrud.Social.Mailchimp.Endpoints {
         /// <summary>
         /// Gets a list of users of the account of the authenticated user.
         /// </summary>
-        /// <returns>Returns an instance of <code>MailchimpGetUsersResponse</code> representing the response.</returns>
+        /// <returns>An instance of <see cref="MailchimpGetUsersResponse"/> representing the response.</returns>
         /// <see>
         ///     <cref>https://apidocs.Mailchimp.com/api/2.0/users/logins.php</cref>
         /// </see>
@@ -48,7 +46,7 @@ namespace Skybrud.Social.Mailchimp.Endpoints {
         /// <summary>
         /// Gets information about the authenticated user.
         /// </summary>
-        /// <returns>Returns an instance of <code>MailchimpGetUserResponse</code> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="MailchimpGetUserResponse"/> representing the response.</returns>
         /// <see>
         ///     <cref>https://apidocs.Mailchimp.com/api/2.0/users/profile.php</cref>
         /// </see>

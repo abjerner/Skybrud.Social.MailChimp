@@ -25,12 +25,13 @@ namespace Skybrud.Social.Mailchimp.Responses.Authentication {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <code>MailchimpMetadataResponse</code>.
+        /// Parses the specified <paramref name="response"/> into an instance of <see cref="MailchimpMetadataResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <code>MailchimpMetadataResponse</code>.</returns>
+        /// <returns>An instance of <see cref="MailchimpMetadataResponse"/>.</returns>
         public static MailchimpMetadataResponse ParseResponse(IHttpResponse response) {
-            return response == null ? null : new MailchimpMetadataResponse(response);
+            if (response == null) throw new ArgumentNullException(nameof(response));
+            return new MailchimpMetadataResponse(response);
         }
 
         #endregion

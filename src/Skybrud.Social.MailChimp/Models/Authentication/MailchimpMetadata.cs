@@ -13,43 +13,47 @@ namespace Skybrud.Social.Mailchimp.Models.Authentication {
         /// <summary>
         /// Gets the data center of the user/account.
         /// </summary>
-        public string DataCenter { get; private set; }
+        public string DataCenter { get; }
 
         /// <summary>
         /// Gets the role of the user.
         /// </summary>
-        public string Role { get; private set; }
+        public string Role { get; }
 
         /// <summary>
         /// Gets the name of the account.
         /// </summary>
-        public string AccountName { get; private set; }
+        public string AccountName { get; }
 
         /// <summary>
         /// Gets the ID of the user.
         /// </summary>
-        public long UserId { get; private set; }
+        public long UserId { get; }
 
         /// <summary>
         /// Gets information about the authenticated user.
         /// </summary>
-        public MailchimpMetadataLogin Login { get; private set; }
+        public MailchimpMetadataLogin Login { get; }
 
         /// <summary>
         /// Gets the login URL of the account.
         /// </summary>
-        public string LoginUrl { get; private set; }
+        public string LoginUrl { get; }
 
         /// <summary>
         /// Gets the API endpoint of the user or account.
         /// </summary>
-        public string ApiEndpoint { get; private set; }
+        public string ApiEndpoint { get; }
 
         #endregion
 
         #region Constructors
 
-        private MailchimpMetadata(JObject obj) : base(obj) {
+        /// <summary>
+        /// Initializes a new instance from the specified <paramref name="obj"/>.
+        /// </summary>
+        /// <param name="obj">The instance of <see cref="JObject"/> representing the meta data.</param>
+        protected MailchimpMetadata(JObject obj) : base(obj) {
             DataCenter = obj.GetString("dc");
             AccountName = obj.GetString("accountname");
             Role = obj.GetString("role");
@@ -62,9 +66,9 @@ namespace Skybrud.Social.Mailchimp.Models.Authentication {
         #endregion
 
         /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <code>MailchimpMetadata</code>.
+        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="MailchimpMetadata"/>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JObject</code> to be parsed.</param>
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
         public static MailchimpMetadata Parse(JObject obj) {
             return obj == null ? null : new MailchimpMetadata(obj);
         }

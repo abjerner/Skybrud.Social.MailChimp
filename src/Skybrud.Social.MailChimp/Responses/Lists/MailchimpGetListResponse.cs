@@ -30,6 +30,7 @@ namespace Skybrud.Social.Mailchimp.Responses.Lists {
         /// <param name="response">The response to be parsed.</param>
         /// <returns>An instance of <see cref="MailchimpGetListResponse"/>.</returns>
         public static MailchimpGetListResponse ParseResponse(IHttpResponse response) {
+            if (response == null) throw new ArgumentNullException(nameof(response));
             return response == null ? null : new MailchimpGetListResponse(response);
         }
 

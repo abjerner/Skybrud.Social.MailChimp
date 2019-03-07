@@ -13,7 +13,7 @@ namespace Skybrud.Social.Mailchimp.Endpoints.Raw {
         /// <summary>
         /// Gets a reference to the OAuth client.
         /// </summary>
-        public MailchimpOAuthClient Client { get; private set; }
+        public MailchimpOAuthClient Client { get; }
 
         #endregion
 
@@ -30,7 +30,7 @@ namespace Skybrud.Social.Mailchimp.Endpoints.Raw {
         /// <summary>
         /// Gets a list of users of the account of the authenticated user.
         /// </summary>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="IHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://apidocs.Mailchimp.com/api/2.0/users/logins.php</cref>
         /// </see>
@@ -41,7 +41,7 @@ namespace Skybrud.Social.Mailchimp.Endpoints.Raw {
         /// <summary>
         /// Gets information about the authenticated user.
         /// </summary>
-        /// <returns>Returns an instance of <code>SocialHttpResponse</code> representing the raw response.</returns>
+        /// <returns>An instance of <see cref="IHttpResponse"/> representing the raw response.</returns>
         /// <see>
         ///     <cref>https://apidocs.Mailchimp.com/api/2.0/users/profile.php</cref>
         /// </see>

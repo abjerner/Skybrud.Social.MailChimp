@@ -1,6 +1,5 @@
 ﻿using Skybrud.Social.Mailchimp.Endpoints.Raw;
 using Skybrud.Social.Mailchimp.Responses.Lists;
-using Skybrud.Social.Mailchimp.Responses.Users;
 
 namespace Skybrud.Social.Mailchimp.Endpoints {
 

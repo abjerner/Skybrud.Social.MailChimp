@@ -15,7 +15,7 @@ namespace Skybrud.Social.Mailchimp {
         /// <summary>
         /// Gets a reference to the internal OAuth client for communication with the Mailchimp API.
         /// </summary>
-        public MailchimpOAuthClient Client { get; private set; }
+        public MailchimpOAuthClient Client { get; }
 
         /// <summary>
         /// Gets a reference to the lists endpoint.
@@ -25,7 +25,7 @@ namespace Skybrud.Social.Mailchimp {
         /// <summary>
         /// Gets a reference to the users endpoint.
         /// </summary>
-        public MailchimpUsersEndpoint Users { get; private set; }
+        public MailchimpUsersEndpoint Users { get; }
 
         #endregion
 
@@ -52,18 +52,18 @@ namespace Skybrud.Social.Mailchimp {
         }
 
         /// <summary>
-        /// Initializes a new instance from the specified <code>apiKey</code>.
+        /// Initializes a new instance from the specified <paramref name="apiKey"/>.
         /// </summary>
         /// <param name="apiKey">The API key.</param>
-        /// <returns>Returns an instance of <code>MailchimpService</code>.</returns>
+        /// <returns>An instance of <see cref="MailchimpService"/>.</returns>
         public static MailchimpService GetFromApiKey(string apiKey) {
 
             // Do we have an API key?
-            if (String.IsNullOrWhiteSpace(apiKey)) throw new ArgumentNullException("apiKey");
+            if (String.IsNullOrWhiteSpace(apiKey)) throw new ArgumentNullException(nameof(apiKey));
 
-            //
+            // Is the API key valid?
             Match match = Regex.Match(apiKey, "^[a-z0-9]+-([a-z0-9]+)$");
-            if (!match.Success) throw new ArgumentException("Specified API key doesn't appear to be valid.", "apiKey");
+            if (!match.Success) throw new ArgumentException("Specified API key doesn't appear to be valid.", nameof(apiKey));
 
             // Initialize a new OAuth client
             MailchimpOAuthClient client = new MailchimpOAuthClient {
@@ -77,11 +77,11 @@ namespace Skybrud.Social.Mailchimp {
         }
 
         /// <summary>
-        /// Initializes a new instance from the specified <code>accessToken</code> and <code>apiEndpoint</code>.
+        /// Initializes a new instance from the specified <paramref name="accessToken"/> and <paramref name="apiEndpoint"/>.
         /// </summary>
-        /// <param name="accessToken"></param>
-        /// <param name="apiEndpoint"></param>
-        /// <returns>Returns an instance of <code>MailchimpService</code>.</returns>
+        /// <param name="accessToken">The access token of the user.</param>
+        /// <param name="apiEndpoint">The API endpoint URL of the user.</param>
+        /// <returns>An instance of <see cref="MailchimpService"/>.</returns>
         public static MailchimpService GetFromAccessToken(string accessToken, string apiEndpoint) {
             
             // Initialize a new OAuth client

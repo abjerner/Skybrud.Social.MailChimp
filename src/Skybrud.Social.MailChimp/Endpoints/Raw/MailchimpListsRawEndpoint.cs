@@ -14,7 +14,7 @@ namespace Skybrud.Social.Mailchimp.Endpoints.Raw {
         /// <summary>
         /// Gets a reference to the OAuth client.
         /// </summary>
-        public MailchimpOAuthClient Client { get; private set; }
+        public MailchimpOAuthClient Client { get; }
 
         #endregion
 

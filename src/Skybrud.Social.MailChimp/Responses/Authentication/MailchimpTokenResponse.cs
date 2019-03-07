@@ -30,6 +30,7 @@ namespace Skybrud.Social.Mailchimp.Responses.Authentication {
         /// <param name="response">The response to be parsed.</param>
         /// <returns>Returns an instance of <code>MailchimpTokenResponse</code>.</returns>
         public static MailchimpTokenResponse ParseResponse(IHttpResponse response) {
+            if (response == null) throw new ArgumentNullException(nameof(response));
             return response == null ? null : new MailchimpTokenResponse(response);
         }
 

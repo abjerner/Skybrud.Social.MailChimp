@@ -13,33 +13,37 @@ namespace Skybrud.Social.Mailchimp.Models.Authentication {
         /// <summary>
         /// Gets the email address of the Mailchimp user.
         /// </summary>
-        public string Email { get; private set; }
+        public string Email { get; }
 
         /// <summary>
         /// Gets the avatar URL of the Mailchimp user.
         /// </summary>
-        public string Avatar { get; private set; }
+        public string Avatar { get; }
 
         /// <summary>
         /// Gets the ID of the Mailchimp user.
         /// </summary>
-        public long LoginId { get; private set; }
+        public long LoginId { get; }
 
         /// <summary>
         /// Gets the login name of the Mailchimp user.
         /// </summary>
-        public string LoginName { get; private set; }
+        public string LoginName { get; }
 
         /// <summary>
         /// Gets the login email address of the Mailchimp user.
         /// </summary>
-        public string LoginEmail { get; private set; }
+        public string LoginEmail { get; }
 
         #endregion
 
         #region Constructors
 
-        private MailchimpMetadataLogin(JObject obj) : base(obj) {
+        /// <summary>
+        /// Initializes a new instance from the specified <paramref name="obj"/>.
+        /// </summary>
+        /// <param name="obj">The instance of <see cref="JObject"/> representing the login.</param>
+        protected MailchimpMetadataLogin(JObject obj) : base(obj) {
             Email = obj.GetString("email");
             Avatar = obj.GetString("avatar");
             LoginId = obj.GetInt64("login_id");
@@ -50,9 +54,9 @@ namespace Skybrud.Social.Mailchimp.Models.Authentication {
         #endregion
 
         /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <code>MailchimpMetadataLogin</code>.
+        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="MailchimpMetadataLogin"/>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JObject</code> to be parsed.</param>
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
         public static MailchimpMetadataLogin Parse(JObject obj) {
             return obj == null ? null : new MailchimpMetadataLogin(obj);
         }

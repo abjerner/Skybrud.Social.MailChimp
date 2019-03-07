@@ -13,48 +13,52 @@ namespace Skybrud.Social.Mailchimp.Models.Users {
         /// <summary>
         /// Gets the ID of the account user.
         /// </summary>
-        public long Id { get; private set; }
+        public long Id { get; }
 
         /// <summary>
         /// Gets the username of the Mailchimp user.
         /// </summary>
-        public string Username { get; private set; }
+        public string Username { get; }
 
         /// <summary>
         /// Gets the name of the user.
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get; }
 
         /// <summary>
         /// Gets the email address of the user.
         /// </summary>
-        public string Email { get; private set; }
+        public string Email { get; }
 
         /// <summary>
         /// Gets the role of the user.
         /// </summary>
-        public string Role { get; private set; }
+        public string Role { get; }
 
         /// <summary>
         /// Gets the avatar URL of the user.
         /// </summary>
-        public string Avatar { get; private set; }
+        public string Avatar { get; }
 
         /// <summary>
         /// Gets the ID of the global Mailchimp user.
         /// </summary>
-        public long GlobalUserId { get; private set; }
+        public long GlobalUserId { get; }
 
         /// <summary>
         /// Gets the unique ID related to the current data center.
         /// </summary>
-        public string DataCenterUniqueId { get; private set; }
+        public string DataCenterUniqueId { get; }
 
         #endregion
 
         #region Constructors
 
-        private MailchimpUser(JObject obj) : base(obj) {
+        /// <summary>
+        /// Initializes a new instance from the specified <paramref name="obj"/>.
+        /// </summary>
+        /// <param name="obj">The instance of <see cref="JObject"/> representing the user.</param>
+        protected MailchimpUser(JObject obj) : base(obj) {
             Id = obj.GetInt64("id");
             Username = obj.GetString("username");
             Name = obj.GetString("name");
@@ -70,9 +74,9 @@ namespace Skybrud.Social.Mailchimp.Models.Users {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>obj</code> into an instance of <code>MailchimpUser</code>.
+        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="MailchimpUser"/>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JObject</code> to be parsed.</param>
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
         public static MailchimpUser Parse(JObject obj) {
             return obj == null ? null : new MailchimpUser(obj);
         }
