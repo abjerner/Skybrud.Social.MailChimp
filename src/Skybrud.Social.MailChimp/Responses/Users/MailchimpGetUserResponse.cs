@@ -1,4 +1,5 @@
-﻿using Skybrud.Essentials.Http;
+﻿using System;
+using Skybrud.Essentials.Http;
 using Skybrud.Social.Mailchimp.Models.Users;
 
 namespace Skybrud.Social.Mailchimp.Responses.Users {
@@ -31,7 +32,7 @@ namespace Skybrud.Social.Mailchimp.Responses.Users {
         /// <returns>Returns an instance of <code>MailchimpGetUserResponse</code>.</returns>
         public static MailchimpGetUserResponse ParseResponse(IHttpResponse response) {
             if (response == null) throw new ArgumentNullException(nameof(response));
-            return response == null ? null : new MailchimpGetUserResponse(response);
+            return new MailchimpGetUserResponse(response);
         }
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using Skybrud.Essentials.Http;
+﻿using System;
+using Skybrud.Essentials.Http;
 using Skybrud.Social.Mailchimp.Models.Authentication;
 
 namespace Skybrud.Social.Mailchimp.Responses.Authentication {
@@ -31,7 +32,7 @@ namespace Skybrud.Social.Mailchimp.Responses.Authentication {
         /// <returns>Returns an instance of <code>MailchimpTokenResponse</code>.</returns>
         public static MailchimpTokenResponse ParseResponse(IHttpResponse response) {
             if (response == null) throw new ArgumentNullException(nameof(response));
-            return response == null ? null : new MailchimpTokenResponse(response);
+            return new MailchimpTokenResponse(response);
         }
 
         #endregion

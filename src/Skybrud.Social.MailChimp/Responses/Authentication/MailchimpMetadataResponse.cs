@@ -1,4 +1,5 @@
-﻿using Skybrud.Essentials.Http;
+﻿using System;
+using Skybrud.Essentials.Http;
 using Skybrud.Social.Mailchimp.Models.Authentication;
 
 namespace Skybrud.Social.Mailchimp.Responses.Authentication {

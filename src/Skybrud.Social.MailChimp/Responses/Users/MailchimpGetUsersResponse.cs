@@ -32,7 +32,7 @@ namespace Skybrud.Social.Mailchimp.Responses.Users {
         /// <returns>Returns an instance of <code>MailchimpGetUsersResponse</code>.</returns>
         public static MailchimpGetUsersResponse ParseResponse(IHttpResponse response) {
             if (response == null) throw new ArgumentNullException(nameof(response));
-            return response == null ? null : new MailchimpGetUsersResponse(response);
+            return new MailchimpGetUsersResponse(response);
         }
 
         #endregion
